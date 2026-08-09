@@ -1,0 +1,46 @@
+{
+  "data_collection": [
+    {
+      "risk_id": "DC1",
+      "description": "Customer transaction and demographic data may be unbalanced, leading to biased sampling that underrepresents certain groups.",
+      "principle": "Fairness",
+      "mitigation": "Conduct a demographic distribution audit and rebalance the dataset using targeted sampling or synthetic augmentation to ensure all groups are proportionally represented."
+    },
+    {
+      "risk_id": "DC2",
+      "description": "Sensitive demographic attributes may be collected without explicit user consent, raising privacy and ethical concerns.",
+      "principle": "Transparency",
+      "mitigation": "Implement clear consent documentation and restrict data collection to fields essential for model performance; communicate data usage transparently to users."
+    }
+  ],
+
+  "modeling": [
+    {
+      "risk_id": "M1",
+      "description": "Model predictions may systematically favor majority customer groups due to historical bias embedded in training data.",
+      "principle": "Fairness",
+      "mitigation": "Apply fairness-aware training methods, including reweighting, bias constraints, and evaluation across demographic slices before finalizing the model."
+    },
+    {
+      "risk_id": "M2",
+      "description": "Complex model architecture may produce opaque predictions that stakeholders cannot interpret or challenge.",
+      "principle": "Accountability",
+      "mitigation": "Use interpretable models where possible or integrate explainability tools (e.g., SHAP values) to provide reason codes for predictions."
+    }
+  ],
+
+  "deployment": [
+    {
+      "risk_id": "D1",
+      "description": "Model drift may cause degradation in prediction fairness as customer behavior changes over time.",
+      "principle": "Transparency",
+      "mitigation": "Implement continuous monitoring pipelines that track fairness metrics and trigger alerts when deviations exceed thresholds."
+    },
+    {
+      "risk_id": "D2",
+      "description": "Lack of human oversight during automated recommendations may lead to unreviewed harmful decisions.",
+      "principle": "Accountability",
+      "mitigation": "Introduce human-in-the-loop review for high-impact decisions and maintain audit logs for all automated outputs."
+    }
+  ]
+}

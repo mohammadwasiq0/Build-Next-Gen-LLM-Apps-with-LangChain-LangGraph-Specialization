@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-alert-rules
+  namespace: monitoring
+data:
+  llm-api-security.yml: |
+    groups:
+    - name: llm_api_security
+      interval: 30s
+      rules:
+      - alert: HighFailureRate
+        expr: |
+          rate(http_requests_total{job="llm-api",code=~"5.."}[5m]) > 0.05
+        for: 2m
+        labels:
+          severity: critical
+          component: api
+        annotations:
+          summary: "High failure rate detected on LLM API"
+          description: "Failure rate exceeds 5% for 2 minutes. Current value: {{ $value | humanizePercentage }}"
+          runbook_url: "https://runbooks.example.com/high-failure-rate"
+
+      - alert: AnomalousRequestPattern
+        expr: |
+          increase(http_requests_total{job="llm-api"}[1m]) > 10000
+        for: 1m
+        labels:
+          severity: warning
+          component: api
+        annotations:
+          summary: "Anomalous request pattern detected"
+          description: "Request rate spike detected: {{ $value | humanize }} requests per minute from single source"
+          runbook_url: "https://runbooks.example.com/anomalous-pattern"
+
+      - alert: PromptInjectionAttempt
+        expr: |
+          rate(prompt_injection_detected_total{job="llm-api"}[5m]) > 0
+        for: 30s
+        labels:
+          severity: critical
+          component: security
+        annotations:
+          summary: "Prompt injection attempt detected"
+          description: "Potential prompt injection attack identified. Source IP: {{ $labels.source_ip }}, Pattern: {{ $labels.pattern }}"
+          runbook_url: "https://runbooks.example.com/prompt-injection"
+
+      - alert: HighAuthenticationFailures
+        expr: |
+          rate(authentication_failures_total{job="llm-api"}[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+          component: auth
+        annotations:
+          summary: "High authentication failure rate"
+          description: "Authentication failures exceed 10 per minute. Possible brute-force attack."
+          runbook_url: "https://runbooks.example.com/auth-failures"
+
+      - alert: UnusualTokenUsage
+        expr: |
+          rate(token_usage_total{job="llm-api"}[5m]) > 1000000
+        for: 5m
+        labels:
+          severity: warning
+          component: cost
+        annotations:
+          summary: "Unusual token usage detected"
+          description: "Token usage spike detected. Possible cost-based attack or configuration issue."
+          runbook_url: "https://runbooks.example.com/token-usage"
+
+      - alert: DataExfiltrationAttempt
+        expr: |
+          rate(data_exfiltration_detected_total{job="llm-api"}[5m]) > 0
+        for: 30s
+        labels:
+          severity: critical
+          component: security
+        annotations:
+          summary: "Data exfiltration attempt detected"
+          description: "Suspicious data access pattern detected. Source IP: {{ $labels.source_ip }}"
+          runbook_url: "https://runbooks.example.com/data-exfiltration"
+

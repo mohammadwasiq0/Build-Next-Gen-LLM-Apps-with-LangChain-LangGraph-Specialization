@@ -1,0 +1,39 @@
+{
+  "description": "Sample metrics and cost data for GlobalCorp operations platform lab",
+  "baseline_metrics": {
+    "p50_latency_ms": 45,
+    "p95_latency_ms": 180,
+    "p99_latency_ms": 850,
+    "error_rate": 0.03,
+    "availability": 99.97,
+    "requests_per_second": 1200,
+    "cache_hit_rate": 0.23,
+    "cost_per_request_usd": 0.002,
+    "monthly_cost_usd": 200000
+  },
+  "optimized_metrics": {
+    "p50_latency_ms": 38,
+    "p95_latency_ms": 95,
+    "p99_latency_ms": 180,
+    "error_rate": 0.01,
+    "availability": 99.99,
+    "requests_per_second": 8500,
+    "cache_hit_rate": 0.61,
+    "cost_per_request_usd": 0.0008,
+    "monthly_cost_usd": 62000
+  },
+  "monitoring_thresholds": {
+    "p95_latency_ms": 100,
+    "error_rate_percent": 0.1,
+    "availability_percent": 99.9,
+    "budget_alert_percent": 90
+  },
+  "cost_breakdown": {
+    "llm_inference": 120000,
+    "compute_instances": 50000,
+    "database": 20000,
+    "caching": 5000,
+    "networking": 5000
+  }
+}
+

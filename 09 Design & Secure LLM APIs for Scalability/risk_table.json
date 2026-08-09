@@ -1,0 +1,26 @@
+[
+  {
+    "risk_id": "R1",
+    "description": "Historical lending data may contain demographic biases that disadvantage certain groups, leading to unfair loan denials.",
+    "principle": "Fairness",
+    "mitigation": "Regularly audit training data and model outputs for disparate impact and rebalance or reweight data when bias is detected."
+  },
+  {
+    "risk_id": "R2",
+    "description": "Applicants may not understand why the model recommended approval or denial, reducing transparency and trust in the system.",
+    "principle": "Transparency",
+    "mitigation": "Provide clear, model-generated explanations for each recommendation using explainability techniques such as feature attribution."
+  },
+  {
+    "risk_id": "R3",
+    "description": "If incorrect predictions lead to harmful outcomes, responsibility may be unclear due to lack of human oversight.",
+    "principle": "Accountability",
+    "mitigation": "Establish human-in-the-loop review for high-impact decisions and maintain detailed logs of model behavior and decision paths."
+  },
+  {
+    "risk_id": "R4",
+    "description": "Sensitive financial and personal applicant data may be exposed or misused during model training or inference.",
+    "principle": "Privacy",
+    "mitigation": "Implement strict data minimization, encryption in transit and at rest, and access controls to ensure sensitive data remains protected."
+  }
+]

@@ -1,0 +1,37 @@
+﻿strategies:
+  - name: Balanced Data Sampling
+    stage: Data Collection
+    description: >
+      Ensure demographic groups are proportionally represented by using
+      stratified sampling and synthetic data augmentation where necessary.
+    expected_impact: >
+      Reduces data imbalance, improves fairness during model training,
+      and minimizes the risk of majority-group bias.
+
+  - name: Explainability Integration
+    stage: Modeling
+    description: >
+      Use model-agnostic explainability tools such as SHAP or LIME to
+      generate clear reasoning behind predictions and allow teams to
+      detect biased decision patterns.
+    expected_impact: >
+      Increases transparency for stakeholders and provides interpretability
+      needed to assess fairness and accountability requirements.
+
+  - name: Post-Deployment Bias Monitoring
+    stage: Deployment
+    description: >
+      Implement ongoing monitoring pipelines to measure fairness metrics,
+      detect drift, and identify emerging biases in real-world data.
+    expected_impact: >
+      Ensures long-term fairness, provides early warning signals when
+      model behavior changes, and supports regulatory compliance.
+
+  - name: Human Oversight Workflow
+    stage: Deployment
+    description: >
+      Introduce human review for high-risk predictions and maintain
+      structured escalation processes for cases with potential harm.
+    expected_impact: >
+      Enhances accountability, prevents automated errors from escalating,
+      and builds trust in system decision-making.
